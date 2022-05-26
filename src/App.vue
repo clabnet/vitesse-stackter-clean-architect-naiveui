@@ -10,7 +10,7 @@ provide(DefaultApolloClient, apolloClient)
 // you can use this to manipulate the document head in any components,
 // they will be rendered correctly in the html results with vite-ssg
 useHead({
-  title: 'Vitesse',
+  title: 'Vitesse Modular NaiveUI',
   meta: [
     { name: 'description', content: 'Opinionated Vite Starter Template' },
     {
@@ -22,5 +22,16 @@ useHead({
 </script>
 
 <template>
-  <RouterView />
+  <n-config-provider>
+    <n-loading-bar-provider>
+      <n-message-provider :to="refMsgTargetEl">
+        <n-notification-provider>
+          <n-dialog-provider>
+            <router-view />
+            <div ref="refMsgTargetEl" class="app-msg-target"></div>
+          </n-dialog-provider>
+        </n-notification-provider>
+      </n-message-provider>
+    </n-loading-bar-provider>
+  </n-config-provider>
 </template>
